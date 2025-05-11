@@ -4,9 +4,11 @@ import {useEffect, useState} from "react";
 
 export default function Home() {
   const [users, setUsers] = useState<User[]>([]);
+
   useEffect(() => {
-    fetch('/api/users').then(res => res.json()).then(setUsers)
-  })
+    fetch('/api/users').then(res => res.json()).then((item) => setUsers(item))
+  }, [])
+
   return (
     <div>
       {users.map((user: User) => <div key={user.id}>{user.name}</div>)}
